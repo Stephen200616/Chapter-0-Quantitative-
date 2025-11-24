@@ -1,4 +1,62 @@
  p <- ggplot(mpg, aes(x = displ, y = hwy))
-
  p <- p + geom_point(aes(colour = class))
  print(p)
+
+
+ p <- ggplot(mpg, aes(x = displ, y = hwy))
+ p <- p + geom_point(aes(colour = class, class = cyl, shape = drv))
+ print(p)
+
+p <- ggplot(mpg, aes(x = displ, y = hwy))
+ p <- p + geom_point(aes(colour = class, class = cyl, shape = drv), alpha = 1/4)
+ print(p)
+
+p <- ggplot(mpg, aes(x = displ, y = hwy))
+ p <- p + geom_point()
+ print(p)
+
+p1 <- p1 + facet_grid(. ~ cyl)
+p2 <- p2 + facet_grid(drv ~ .)
+p3 <- p3 + facet_grid(drv ~ cyl)
+p4 <- p4 + facet_grid(~ class)
+
+library (gridExtra)
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+
+Improving plots:
+p <- ggplot(mpg, aes(x = cty, y = hwy))
+ p <- p + geom_point(aes(colour = class))
+ print(p)
+
+JITTER:
+ p <- ggplot(mpg, aes(x = displ, y = hwy))
+ p <- p + geom_point(position = "jitter", alpha = 1/2)
+ print(p)
+
+REORDER:
+ p <- ggplot(mpg, aes(x = reorder(class, hwy), y = hwy))
+ p <- p + geom_point()
+ print(p)
+
+REORDER WITH JITTER:
+ p <- ggplot(mpg, aes(x = reorder(class, hwy), y = hwy))
+ p <- p + geom_point(position = "jitter")
+ print(p)
+
+REORDER Replace with boxplots:
+ p <- ggplot(mpg, aes(x = reorder(class, hwy), y = hwy))
+ p <- p + geom_boxplot()
+ print(p)
+
+ p <- ggplot(mpg, aes(x = reorder(class, hwy), y = hwy))
+ p <- p + geom_point(position = "jitter")
+ p <- p + geom_boxplot(alpha = 0.5)
+ print(p)
+
+ p <- ggplot(mpg, aes(x = reorder(class, hwy), y = hwy))
+ p <- p + geom_boxplot(alpha = 0.5)
+ p <- p + geom_point(position = "jitter")
+ print(p)
+
+
+
